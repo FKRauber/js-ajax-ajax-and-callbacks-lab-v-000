@@ -20,5 +20,27 @@ var renderResult = result => {
   `
 }
 
+var showCommits = repoData => {
+  $.get(`https://api.github.com/repos/${repoData.dataset.owner}/${repoData.dataset.repository}/commits`, function(data) {
+    $('#details').html(renderCommits(data))
+  }).fail(function(error) {
+    displayError();
+  });
+}
+
+var renderCommits = commits => {
+  return `<ul>${commits.map(item => renderCommit(item)).join('')}</ul>`;
+}
+
+var renderCommit = commit => {
+  return `
+    <div>
+      <h2>${commit.commit.author.name} - GitHub: ${commit.author.login}</h2>
+      <p>SHA - ${commit.sha}</p>
+      <img src="${commit.author.avatar_url}">
+    </div>
+  `
+}
+
 $(document).ready(function (){
 });
