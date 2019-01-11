@@ -7,7 +7,7 @@ var searchRepositories = () => {
   });
 }
 
-var displayError = () => $('#errors').html("Error.  Please try again.");
+var displayError = () => $('#errors').html("I'm sorry, there's been an error.  Please try again.");
 var renderSearchResults = data => data.items.map(item => renderResult(item));
 
 var renderResult = result => {
